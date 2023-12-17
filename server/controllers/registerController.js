@@ -1,12 +1,14 @@
-import UserModel from "../Models/user.js";
+import UserModel from '../Models/user.js';
 
 const registerController = {
   createNewUser: async (req, res) => {
     try {
+      // check email existed
+      // crypto password
       const newUser = req.body;
       const createNewUser = await UserModel.create(newUser);
       res.status(201).json({
-        message: "User created successfully",
+        message: 'User created successfully',
         data: createNewUser,
       });
     } catch (error) {
@@ -20,7 +22,7 @@ const registerController = {
       const getNewUser = req.body;
       const getAllNewUsers = await UserModel.find(getNewUser);
       res.status(200).json({
-        message: "Users retrieved successfully",
+        message: 'Users retrieved successfully',
         data: getAllNewUsers,
       });
     } catch (error) {
