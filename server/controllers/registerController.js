@@ -4,6 +4,8 @@ import UserModel from "../Models/user.js";
 const registerController = {
   createNewUser: async (req, res) => {
     try {
+      // check email existed
+      // crypto password
       const newUser = req.body;
       const createNewUser = await UserModel.create(newUser);
       // tạo 1 detailUser với IdUser tương ứng objectId
