@@ -1,3 +1,4 @@
+import DetailUserModel from "../Models/DetailUser.js";
 import UserModel from "../Models/user.js";
 
 const registerController = {
@@ -5,6 +6,12 @@ const registerController = {
     try {
       const newUser = req.body;
       const createNewUser = await UserModel.create(newUser);
+      // tạo 1 detailUser với IdUser tương ứng objectId
+      const createNewDetailUser = await DetailUserModel.create({
+        idUser: createNewUser._id,
+        ...req.body,
+      });
+      //
       res.status(201).json({
         message: "User created successfully",
         data: createNewUser,

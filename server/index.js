@@ -5,6 +5,7 @@ import cors from "cors";
 //import routes
 import registerRouter from "./routes/register.js";
 import loginRouter from "./routes/login.js";
+import infoUserRouter from "./routes/infoUser.js";
 
 const app = express();
 const URI =
@@ -21,6 +22,7 @@ app.get("/", (req, res) => {
 // Routes
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
+app.use("/infouser", infoUserRouter);
 
 app.listen(3001, () => {
   console.log("Server has been run!");

@@ -1,3 +1,4 @@
+import DetailUserModel from "../Models/DetailUser.js";
 import UserModel from "../Models/user.js";
 
 const middlewares = {
@@ -60,6 +61,13 @@ const middlewares = {
       });
       return;
     }
+    next();
+  },
+  infoUser: async (req, res, next) => {
+    // tim objectId ! cập nhật sau :)
+    const user = await UserModel.findOne({ email: req.body.email });
+    req.id = { idUser: user._id };
+    //
     next();
   },
 };
