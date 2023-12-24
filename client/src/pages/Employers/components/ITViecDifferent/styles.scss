@@ -1,5 +1,4 @@
 .itviec-different-container {
-  background-color: rgba(0, 0, 0, 0);
   background-image: linear-gradient(
     rgba(70, 0, 0, 0) 29.86%,
     rgb(56, 0, 0) 100%
@@ -30,7 +29,7 @@
 
 //   CONTENT WRAPPER
 .content-wrapper {
-  background-image: url("https://itviec.com/assets/employer_landing/round-7b576a08f59ea555667c691a6bb1de728b3bd9d8c2f9b137a24976fbc3825aa9.svg");
+  background-image: url('https://itviec.com/assets/employer_landing/round-7b576a08f59ea555667c691a6bb1de728b3bd9d8c2f9b137a24976fbc3825aa9.svg');
   background-position: center center;
   background-repeat: no-repeat;
   padding: 88px 20px 120px;
@@ -55,7 +54,6 @@
     align-items: center;
     flex-direction: column;
     position: relative;
-    gap: 20px;
 
     .number-text {
       font-size: 40px;
@@ -67,6 +65,7 @@
       margin-top: 8px !important;
       font-size: 16px;
       font-weight: 400;
+      color: rgb(232, 230, 227);
     }
 
     img {
