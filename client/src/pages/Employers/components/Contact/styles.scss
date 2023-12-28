@@ -77,9 +77,13 @@
       font-size: 16px;
       font-weight: 400;
       border: 1px solid #dedede;
-      color: #121212;
+      color: #fff;
       border-radius: 4px;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    input::placeholder {
+      color: #fff;
     }
   }
 }
@@ -111,15 +115,20 @@
     flex-direction: column;
 
     input {
+      display: block;
       padding: 16px;
       height: 22px;
       line-height: 1.25;
-      font-weight: 400;
       font-size: 16px;
-      background-color: #fff;
-      background-clip: padding-box;
+      font-weight: 400;
       border: 1px solid #dedede;
+      color: #fff;
+      border-radius: 4px;
       transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    input::placeholder {
+      color: #fff;
     }
   }
 }
@@ -134,4 +143,9 @@ button {
   min-width: 180px;
   border-radius: 4px;
   cursor: pointer;
+}
+
+label {
+  margin-top: 4px;
+  color: red;
 }
