@@ -1,0 +1,21 @@
+.infoUser {
+  width: 95%;
+  margin: 0 auto;
+  padding: 0.8rem;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.infoUserLeft {
+  width: 70%;
+  background-color: aqua;
+  border-radius: 0.8rem;
+  padding: 0.8rem;
+}
+.infoUserRight {
+  width: 25%;
+  background-color: yellowgreen;
+  border-radius: 0.8rem;
+  padding: 0.8rem;
+}

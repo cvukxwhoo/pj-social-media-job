@@ -1,13 +1,12 @@
-import './App.css';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { publicRoutes } from './routes/index.jsx';
-import DefaultLayout from './components/Layout/DefaultLayout/index.jsx';
-import { Fragment } from 'react';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { publicRoutes } from "./routes/index.jsx";
+import DefaultLayout from "./components/Layout/DefaultLayout/index.jsx";
+import { Fragment } from "react";
 
 function App() {
   return (
     <Router>
-      <div className='App'>
+      <div className="App">
         <Routes>
           {publicRoutes.map((route, index) => {
             const Page = route.component;
