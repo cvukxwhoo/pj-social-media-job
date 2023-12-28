@@ -1,7 +1,6 @@
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell } from "@fortawesome/free-solid-svg-icons";
-
 const Header = () => {
   return (
     <header className="header">

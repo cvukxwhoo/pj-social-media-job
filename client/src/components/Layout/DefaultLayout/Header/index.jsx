@@ -33,7 +33,7 @@ const Header = () => {
               <a href="/employer/details">For Employers </a>
             </li>
             <li>
-              <a href="">Sign in/Sign up </a>
+              <a href="/login">Sign in/Sign up </a>
             </li>
             <li>
               <FontAwesomeIcon icon={faBell} className="fa-regular" size="2x" />
