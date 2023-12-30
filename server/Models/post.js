@@ -1,5 +1,6 @@
-import { ObjectId } from 'mongodb';
-import mongoose from 'mongoose';
+import { ObjectId } from "mongodb";
+import mongoose from "mongoose";
+import { format } from "date-fns";
 
 const PostSchema = mongoose.Schema({
   title: String,
@@ -8,8 +9,12 @@ const PostSchema = mongoose.Schema({
   location: String,
   workPlace: String, // Hybrid or at office
   vacancies: String,
+  createdAt: {
+    type: String,
+    default: format(new Date(), "MMM dd, yyyy"),
+  },
 });
 
-const PostModel = mongoose.model('posts', PostSchema);
+const PostModel = mongoose.model("posts", PostSchema);
 
 export default PostModel;

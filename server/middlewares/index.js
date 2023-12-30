@@ -1,7 +1,6 @@
-import DetailUserModel from '../Models/DetailUser.js';
-import UserModel from '../Models/user.js';
-import EmployerModel from '../Models/employerDetail.js';
-import PostModel from '../Models/post.js';
+import DetailUserModel from "../Models/DetailUser.js";
+import UserModel from "../Models/user.js";
+import EmployerModel from "../Models/employerDetail.js";
 
 const middlewares = {
   register: async (req, res, next) => {
@@ -9,14 +8,14 @@ const middlewares = {
     // Must have userName
     if (!userName) {
       res.status(400).json({
-        message: 'Please provide a username',
+        message: "Please provide a username",
       });
       return;
     }
     // Must have email
     if (!email) {
       res.status(400).json({
-        message: 'Please provide a email',
+        message: "Please provide a email",
       });
       return;
     }
@@ -26,13 +25,13 @@ const middlewares = {
       const existingEmail = await UserModel.findOne({ email });
       if (existingEmail) {
         res.status(400).json({
-          message: 'Email already in use',
+          message: "Email already in use",
         });
         return;
       }
     } catch (error) {
       res.status(500).json({
-        message: 'Internal Server Error',
+        message: "Internal Server Error",
       });
       return;
     }
@@ -40,7 +39,7 @@ const middlewares = {
     //  Must have password
     if (!password) {
       res.status(400).json({
-        message: 'Please provide a password',
+        message: "Please provide a password",
       });
       return;
     }
@@ -52,14 +51,14 @@ const middlewares = {
     // Must have userName
     if (!email) {
       res.status(400).json({
-        message: 'Please provide a username',
+        message: "Please provide a username",
       });
       return;
     }
     // Must have password
     if (!password) {
       res.status(400).json({
-        message: 'Please provide a password',
+        message: "Please provide a password",
       });
       return;
     }
@@ -80,12 +79,12 @@ const middlewares = {
     // fullName
     if (!fullName) {
       res.status(400).json({
-        message: 'Please let us know your name',
+        message: "Please let us know your name",
       });
       return;
     } else if (fullName.length < 3) {
       res.status(400).json({
-        message: 'Please enter at least 4 characters',
+        message: "Please enter at least 4 characters",
       });
       return;
     }
@@ -93,12 +92,12 @@ const middlewares = {
     // workTitle
     if (!workTitle) {
       res.status(400).json({
-        message: 'Please let us know your title',
+        message: "Please let us know your title",
       });
       return;
     } else if (workTitle.length < 3) {
       res.status(400).json({
-        message: 'Please enter at least 4 characters',
+        message: "Please enter at least 4 characters",
       });
       return;
     }
@@ -107,13 +106,13 @@ const middlewares = {
     const emailRegex = /\b[A-Za-z0-9._%+-]+@gmail\.com\b/;
     if (!workEmail) {
       res.status(400).json({
-        message: 'Please provide your work email address',
+        message: "Please provide your work email address",
       });
       return;
     }
     if (!emailRegex.test(workEmail)) {
       res.status(400).json({
-        message: 'Please provide a valid Gmail email address',
+        message: "Please provide a valid Gmail email address",
       });
       return;
     }
@@ -121,7 +120,7 @@ const middlewares = {
     // phoneNumber
     if (!phoneNumber) {
       res.status(400).json({
-        message: 'Please let us know your name',
+        message: "Please let us know your name",
       });
       return;
     }
@@ -129,12 +128,12 @@ const middlewares = {
     // companyName
     if (!companyName) {
       res.status(400).json({
-        message: 'Please let us know your company name',
+        message: "Please let us know your company name",
       });
       return;
     } else if (companyName.length < 3) {
       res.status(400).json({
-        message: 'Please enter at least 4 characters',
+        message: "Please enter at least 4 characters",
       });
       return;
     }
@@ -142,7 +141,7 @@ const middlewares = {
     // companyLocation
     if (!companyLocation) {
       res.status(400).json({
-        message: 'Please let us know your company name',
+        message: "Please let us know your company name",
       });
       return;
     }
@@ -150,12 +149,13 @@ const middlewares = {
     // websiteUrl
     if (!websiteUrl) {
       res.status(400).json({
-        message: 'Please let us know your website company',
+        message: "Please let us know your website company",
       });
       return;
     }
     next();
   },
+
   infoUser: async (req, res, next) => {
     // tim objectId ! cập nhật sau :)
     const user = await UserModel.findOne({ email: req.body.email });
@@ -164,43 +164,50 @@ const middlewares = {
     next();
   },
 
-  createPost: (req, res, next) => {
-    const { title, userName, rangeSalary, location, workPlace, vacancies } =
-      req.body;
+  createPost: async (req, res, next) => {
+    const {
+      title,
+      userName,
+      rangeSalary,
+      location,
+      workPlace,
+      vacancies,
+      createdAt,
+    } = await req.body;
 
     if (!title) {
       res.status(400).json({
-        message: 'You need provide the title',
+        message: "You need provide the title",
       });
       return;
     }
     if (!userName) {
       res.status(400).json({
-        message: 'You need provide the name',
+        message: "You need provide the name",
       });
       return;
     }
     if (!rangeSalary) {
       res.status(400).json({
-        message: 'You need provide the Range Salary',
+        message: "You need provide the Range Salary",
       });
       return;
     }
     if (!workPlace) {
       res.status(400).json({
-        message: 'You need provide the Work Place',
+        message: "You need provide the Work Place",
       });
       return;
     }
     if (!location) {
       res.status(400).json({
-        message: 'You need provide the location',
+        message: "You need provide the location",
       });
       return;
     }
     if (!vacancies) {
       res.status(400).json({
-        message: 'You need provide the Vacancies',
+        message: "You need provide the Vacancies",
       });
       return;
     }

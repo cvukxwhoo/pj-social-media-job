@@ -2,6 +2,10 @@ import mongoose from "mongoose";
 
 // Contact Infomation
 const EmployerSchema = mongoose.Schema({
+  avatar: {
+    type: String,
+    require: true,
+  },
   fullName: String,
   workTitle: String,
   workEmail: String,

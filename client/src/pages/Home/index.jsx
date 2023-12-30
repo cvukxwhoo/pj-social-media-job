@@ -1,5 +1,11 @@
+import "./styles.scss";
+
 const Home = () => {
-  return <div>This is Home page</div>;
+  return (
+    <>
+      <div className="container">Home Page</div>
+    </>
+  );
 };
 
 export default Home;

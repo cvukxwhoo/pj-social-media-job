@@ -6,7 +6,7 @@ import Employers from "../pages/Employers/index.jsx";
 import Register from "../pages/Register/index.jsx";
 
 const publicRoutes = [
-  { path: "/", component: Home, layout: HeaderOnly },
+  { path: "/", component: Home },
   { path: "/login", component: Login },
   { path: "/register", component: Register },
   { path: "/personal-info", component: InfoUser },

@@ -1,15 +1,16 @@
-import Header from './Header';
-import Sidebar from './Sidebar';
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import "./styles.scss";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const DefaultLayout = ({ children }) => {
   return (
     <div>
       <Header />
-      <div className='container'>
+      <div className="main-container">
         <Sidebar />
-        <div className='content'>{children}</div>
+        <div className="content">{children}</div>
       </div>
     </div>
   );
