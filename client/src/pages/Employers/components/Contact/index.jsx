@@ -251,7 +251,7 @@ const Contact = () => {
 
                     {/* COMPANY LOCATION */}
                     <div className='location-com-input'>
-                      <label htmlFor='companyLocation'> Company Location</label>
+                      <label htmlFor='companyLocation'> Company Address</label>
                       <input
                         type='text'
                         id='companyLocation'

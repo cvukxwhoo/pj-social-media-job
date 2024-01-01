@@ -11,4 +11,6 @@ const postRouter = express.Router();
 //  Routes
 postRouter.post('/', middlewares.createPost, PostController.createPost);
 
+postRouter.get('/', PostController.getPost);
+
 export default postRouter;

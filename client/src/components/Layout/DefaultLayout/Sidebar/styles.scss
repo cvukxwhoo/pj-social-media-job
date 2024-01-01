@@ -12,9 +12,7 @@
 
   .post-items {
     bottom: calc(50% - 8px);
-    border-left: 8px solid red;
-    border-left-color: red;
-    border: 1px solid #9f0d1b;
+
     background-color: rgb(64, 32, 0);
     margin-bottom: 16px;
     padding-top: 8px;
@@ -27,6 +25,11 @@
       .layout-post-item {
         padding-top: 8px;
         padding-bottom: 8px;
+
+        a {
+          text-decoration: none;
+          color: #fff;
+        }
 
         .time-posted {
           justify-content: space-between;
@@ -45,6 +48,7 @@
           line-height: 1.5;
           font-size: 18px;
           font-weight: 700;
+          color: #fff;
         }
 
         .companyName {
@@ -68,10 +72,22 @@
           border: 1px dashed #dedede;
           border-top-color: rgb(57, 62, 64);
           width: 100%;
-          margin: 5px 0;
+          margin: 5px 0 10px;
         }
 
         .workPlace {
+          color: rgb(176, 169, 159);
+          margin-top: 4px;
+          align-items: center;
+        }
+
+        .workLocation {
+          color: rgb(176, 169, 159);
+          margin-top: 4px;
+          align-items: center;
+        }
+
+        .vacancies {
           color: rgb(176, 169, 159);
           margin-top: 4px;
           align-items: center;
@@ -80,11 +96,21 @@
     }
   }
 
+  .post-items:hover {
+    border: 1px solid #ff0821;
+    border-left: 8px solid red;
+    transition: 0.3s ease;
+  }
   .text-flex {
     display: flex;
   }
 
   .text {
     padding-left: 8px;
+  }
+
+  .icon {
+    width: 16px;
+    height: 16px;
   }
 }
