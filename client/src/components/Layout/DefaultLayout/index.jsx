@@ -35,8 +35,8 @@ const DefaultLayout = ({ children }) => {
           />
         </div>
         <div className='main-container'>
-          <Sidebar />
-          <div className='content'>{children}</div>
+          <Sidebar className='sidebar' />
+          <div className='main-content'>{children}</div>
         </div>
       </div>
     </main>

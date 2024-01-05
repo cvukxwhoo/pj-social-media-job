@@ -1,10 +1,10 @@
-import "./styles.scss";
+import './styles.scss';
 
 const Home = () => {
   return (
-    <>
-      <div className="container">Home Page</div>
-    </>
+    <div className='home-container'>
+      <p>aaaaaaaaaaaaaaaaaaaaaa</p>
+    </div>
   );
 };
 
