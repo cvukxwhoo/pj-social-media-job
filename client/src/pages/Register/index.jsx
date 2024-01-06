@@ -1,22 +1,52 @@
-import React from "react";
-import { Form, Input, Button } from "antd";
+import React, { useState } from "react";
+import { Form, Input, Button, Radio } from "antd";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./styles.css";
+import Swal from "sweetalert2";
+
 const Register = () => {
+  const navigate = useNavigate();
   const onFinish = async (values) => {
     try {
       const registerpost = await axios.post(
         "http://localhost:3001/register",
         values
       );
-
-      console.log(registerpost);
+      register_info(registerpost.data);
     } catch (error) {
-      console.log(error);
+      register_info(error.response.data);
     }
   };
+  const register_info = (registerpost) => {
+    if (registerpost.message === "User created successfully") {
+      Swal.fire({
+        title: "Register Success!",
+        text: "Go to Login",
+        icon: "success",
+        confirmButtonText: "OK",
+      });
+      navigate("/login");
+    } else {
+      Swal.fire({
+        title: registerpost.message,
+        text: "Continue Register",
+        icon: "error",
+      });
+    }
+  };
+  const [selectedValue, setSelectedValue] = useState(null);
 
+  const handleRadioChange = (e) => {
+    setSelectedValue(e.target.value);
+  };
+  const validatePasswordLength = (rule, value, callback) => {
+    if (value && value.length < 8) {
+      callback("Password must be at least 8 characters long!");
+    } else {
+      callback();
+    }
+  };
   return (
     <Form name="registration_form" onFinish={onFinish} scrollToFirstError>
       <Form.Item
@@ -57,6 +87,7 @@ const Register = () => {
             required: true,
             message: "Please input your password!",
           },
+          { validator: validatePasswordLength },
         ]}
         hasFeedback
       >
@@ -87,7 +118,12 @@ const Register = () => {
       >
         <Input.Password />
       </Form.Item>
-
+      <Form.Item name="role" label="Accout">
+        <Radio.Group onChange={handleRadioChange} value={selectedValue}>
+          <Radio value="individual">individual</Radio>
+          <Radio value="business">business</Radio>
+        </Radio.Group>
+      </Form.Item>
       <Form.Item>
         <div className="register-button">
           <Button type="primary" htmlType="submit">
