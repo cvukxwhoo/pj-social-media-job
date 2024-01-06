@@ -18,4 +18,6 @@ employerRouter.post(
 
 // employerRouter.get('/details', employerController.getAll);
 
+employerRouter.get("/details/:id", employerController.getDetailsById);
+
 export default employerRouter;

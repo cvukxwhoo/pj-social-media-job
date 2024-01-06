@@ -8,9 +8,9 @@
   width: 32%;
   display: flex;
   justify-content: center;
-  position: relative;
   position: absolute;
   top: 80px;
+  position: fixed;
   padding: 10px;
   z-index: 10;
   background-color: #fff;

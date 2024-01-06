@@ -1,13 +1,13 @@
-import './styles.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "./styles.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBriefcase,
   faLocationDot,
   faSackDollar,
-} from '@fortawesome/free-solid-svg-icons';
-import { useState, useEffect } from 'react';
-import { Spin } from 'antd'; //Loading..
-import axios from 'axios';
+} from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from "react";
+import { Spin } from "antd"; //Loading..
+import axios from "axios";
 
 const Sidebar = () => {
   const [listPost, setListPost] = useState([]);
@@ -16,49 +16,54 @@ const Sidebar = () => {
   useEffect(() => {
     const getPosts = async () => {
       try {
-        const res = await axios.get('http://localhost:3001');
+        const res = await axios.get("http://localhost:3001");
         setListPost(res.data.data);
         setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching posts:', error);
+        console.error("Error fetching posts:", error);
         setIsLoading(false);
       }
     };
+
     getPosts();
   }, []);
 
   return (
     <>
-      <div className='sidebar-container'>
+      <div className="sidebar-container">
         {isLoading ? (
           <Spin />
         ) : (
           listPost.map((post) => {
             return (
-              <div key={post._id} className='post-items'>
-                <div className='post-item'>
-                  <div className='layout-post-item'>
-                    <div className='time-posted text-flex'>
+              <div
+                onClick="handleShowDetailsPost"
+                key={post._id}
+                className="post-items"
+              >
+                <div className="post-item">
+                  <div className="layout-post-item">
+                    <div className="time-posted text-flex">
                       <span>{post.createdAt}</span>
                     </div>
-                    <h3 className='titlePost'>
-                      <a href=''>{post.title}</a>
+                    <h3 className="titlePost">
+                      <a href="">{post.title}</a>
                     </h3>
-                    <div className='companyName'>
-                      <a href=''>{post.userName}</a>
+                    <div className="companyName">
+                      <a href="">{post.userName}</a>
                     </div>
-                    <div className='rangeSalary text-flex'>
+                    <div className="rangeSalary text-flex">
                       <FontAwesomeIcon icon={faSackDollar} />
-                      <div className='text'>{post.rangeSalary}</div>
+                      <div className="text">{post.rangeSalary}</div>
                     </div>
-                    <div className='border-top-dashed'></div>
-                    <div className='workPlace text-flex'>
-                      <FontAwesomeIcon className='icon' icon={faBriefcase} />
-                      <div className='text'>{post.workPlace}</div>
+                    <div className="border-top-dashed"></div>
+                    <div className="workPlace text-flex">
+                      <FontAwesomeIcon className="icon" icon={faBriefcase} />
+                      <div className="text">{post.workPlace}</div>
                     </div>
-                    <div className='workLocation text-flex'>
-                      <FontAwesomeIcon className='icon' icon={faLocationDot} />
-                      <div className='text'>{post.location}</div>
+                    <div className="workLocation text-flex">
+                      <FontAwesomeIcon className="icon" icon={faLocationDot} />
+                      <div className="text">{post.location}</div>
                     </div>
                   </div>
                 </div>

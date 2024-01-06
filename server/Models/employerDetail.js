@@ -2,10 +2,6 @@ import mongoose from "mongoose";
 
 // Contact Infomation
 const EmployerSchema = mongoose.Schema({
-  avatar: {
-    type: String,
-    require: true,
-  },
   fullName: String,
   workTitle: String,
   workEmail: String,
@@ -14,6 +10,11 @@ const EmployerSchema = mongoose.Schema({
   companyLocation: String,
   websiteUrl: String,
   selectedOption: String,
+  companyType: String,
+  companySize: String,
+  country: String,
+  workingDay: String,
+  overtimePolicy: String,
 });
 
 const EmployerModel = mongoose.model("employer", EmployerSchema);

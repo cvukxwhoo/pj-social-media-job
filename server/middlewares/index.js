@@ -1,6 +1,4 @@
-import DetailUserModel from "../Models/DetailUser.js";
 import UserModel from "../Models/user.js";
-import EmployerModel from "../Models/employerDetail.js";
 
 const middlewares = {
   register: async (req, res, next) => {
@@ -75,7 +73,12 @@ const middlewares = {
       companyName,
       companyLocation,
       websiteUrl,
-    } = await req.body;
+      companyType,
+      companySize,
+      country,
+      workingDay,
+      overtimePolicy,
+    } = req.body;
     // fullName
     if (!fullName) {
       res.status(400).json({
@@ -84,7 +87,7 @@ const middlewares = {
       return;
     } else if (fullName.length < 3) {
       res.status(400).json({
-        message: "Please enter at least 4 characters",
+        message: "Please enter fullName at least 4 characters",
       });
       return;
     }
@@ -97,7 +100,7 @@ const middlewares = {
       return;
     } else if (workTitle.length < 3) {
       res.status(400).json({
-        message: "Please enter at least 4 characters",
+        message: "Please enter work title at least 4 characters",
       });
       return;
     }
@@ -131,13 +134,7 @@ const middlewares = {
         message: "Please let us know your company name",
       });
       return;
-    } else if (companyName.length < 3) {
-      res.status(400).json({
-        message: "Please enter at least 4 characters",
-      });
-      return;
     }
-
     // companyLocation
     if (!companyLocation) {
       res.status(400).json({
@@ -153,6 +150,7 @@ const middlewares = {
       });
       return;
     }
+
     next();
   },
 
