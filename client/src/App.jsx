@@ -3,6 +3,13 @@ import { publicRoutes } from "./routes/index.jsx";
 import DefaultLayout from "./components/Layout/DefaultLayout/index.jsx";
 import { Fragment } from "react";
 
+const storedData = localStorage.getItem("token");
+if (storedData) {
+  console.log("Dữ liệu từ Local Storage:", storedData);
+} else {
+  console.log("Không có dữ liệu trong Local Storage");
+}
+
 function App() {
   return (
     <Router>
