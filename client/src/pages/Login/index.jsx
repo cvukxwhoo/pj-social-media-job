@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import "./styles.css";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import axios from "axios";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
+  const { login } = useAuth();
+  const [token, setToken] = useState("");
   const onFinish = async (values) => {
-    console.log(values);
     try {
       const loginpost = await axios.post("http://localhost:3001/login", values);
-      console.log(loginpost);
+      setToken(loginpost.data.token);
+      login(loginpost.data.data, loginpost.data.token);
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -62,7 +65,6 @@ const Login = () => {
           Forgot password
         </a>
       </Form.Item>
-
       <Form.Item>
         <Button type="primary" htmlType="submit" className="login-form-button">
           Log in
