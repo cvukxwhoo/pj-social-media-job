@@ -8,6 +8,7 @@ import registerRouter from "./routes/register.js";
 import loginRouter from "./routes/login.js";
 import infoUserRouter from "./routes/infoUser.js";
 import employerRouter from "./routes/employer.js";
+import postRouter from "./routes/post.js";
 
 const app = express();
 const URI =
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // Routes
+app.use("/", postRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/infouser", infoUserRouter);

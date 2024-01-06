@@ -1,7 +1,6 @@
 import "./styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faBell } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
 const Header = () => {
   return (
     <header className="header">
@@ -30,12 +29,10 @@ const Header = () => {
 
           <ul className="right-side">
             <li>
-              <a href="">For Employers </a>
+              <a href="/employer/details">For Employers </a>
             </li>
             <li>
-              <a href="">
-                <Link to="/login">Sign in/Sign up</Link>
-              </a>
+              <a href="">Sign in/Sign up </a>
             </li>
             <li>
               <FontAwesomeIcon icon={faBell} className="fa-regular" />

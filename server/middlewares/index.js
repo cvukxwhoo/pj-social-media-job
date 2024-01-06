@@ -1,6 +1,4 @@
-import DetailUserModel from "../Models/DetailUser.js";
 import UserModel from "../Models/user.js";
-import EmployerModel from "../Models/employerDetail.js";
 
 const middlewares = {
   register: async (req, res, next) => {
@@ -75,7 +73,12 @@ const middlewares = {
       companyName,
       companyLocation,
       websiteUrl,
-    } = await req.body;
+      companyType,
+      companySize,
+      country,
+      workingDay,
+      overtimePolicy,
+    } = req.body;
     // fullName
     if (!fullName) {
       res.status(400).json({
@@ -84,7 +87,7 @@ const middlewares = {
       return;
     } else if (fullName.length < 3) {
       res.status(400).json({
-        message: "Please enter at least 4 characters",
+        message: "Please enter fullName at least 4 characters",
       });
       return;
     }
@@ -97,7 +100,7 @@ const middlewares = {
       return;
     } else if (workTitle.length < 3) {
       res.status(400).json({
-        message: "Please enter at least 4 characters",
+        message: "Please enter work title at least 4 characters",
       });
       return;
     }
@@ -131,13 +134,7 @@ const middlewares = {
         message: "Please let us know your company name",
       });
       return;
-    } else if (companyName.length < 3) {
-      res.status(400).json({
-        message: "Please enter at least 4 characters",
-      });
-      return;
     }
-
     // companyLocation
     if (!companyLocation) {
       res.status(400).json({
@@ -153,13 +150,65 @@ const middlewares = {
       });
       return;
     }
+
     next();
   },
+
   infoUser: async (req, res, next) => {
     // tim objectId ! cập nhật sau :)
     const user = await UserModel.findOne({ email: req.body.email });
     req.id = { idUser: user._id };
     //
+    next();
+  },
+
+  createPost: async (req, res, next) => {
+    const {
+      title,
+      userName,
+      rangeSalary,
+      location,
+      workPlace,
+      vacancies,
+      createdAt,
+    } = await req.body;
+
+    if (!title) {
+      res.status(400).json({
+        message: "You need provide the title",
+      });
+      return;
+    }
+    if (!userName) {
+      res.status(400).json({
+        message: "You need provide the name",
+      });
+      return;
+    }
+    if (!rangeSalary) {
+      res.status(400).json({
+        message: "You need provide the Range Salary",
+      });
+      return;
+    }
+    if (!workPlace) {
+      res.status(400).json({
+        message: "You need provide the Work Place",
+      });
+      return;
+    }
+    if (!location) {
+      res.status(400).json({
+        message: "You need provide the location",
+      });
+      return;
+    }
+    if (!vacancies) {
+      res.status(400).json({
+        message: "You need provide the Vacancies",
+      });
+      return;
+    }
     next();
   },
 };

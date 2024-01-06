@@ -2,6 +2,7 @@ header {
   height: 60px;
   display: block;
   background-color: #000;
+  z-index: 1000;
 
   nav {
     background: linear-gradient(269.85deg, #54151c 0%, #121212 54.89%);
