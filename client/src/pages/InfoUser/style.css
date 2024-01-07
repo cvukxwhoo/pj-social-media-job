@@ -9,7 +9,8 @@
 .infoUserLeft {
   width: 70%;
   border-radius: 0.8rem;
-  border: 0.5px solid rgb(234, 230, 230);
+  border-top: 0.5px solid rgb(234, 230, 230);
+  border-bottom: 0.5px solid rgb(234, 230, 230);
 }
 .infoUserRight {
   width: 25%;

@@ -1,5 +1,6 @@
 import UserModel from "../Models/user.js";
 import jwt from "jsonwebtoken";
+import { createAccessToken } from "../utils/index.js";
 
 const loginController = {
   // Duyệt POST Login
@@ -19,9 +20,7 @@ const loginController = {
         });
         return;
       } else {
-        const token = jwt.sign({ id: userLogin._id }, "PRIVATE_KEY", {
-          expiresIn: "24h",
-        });
+        const token = createAccessToken(userLogin);
         res.status(200).json({
           message: "User logged in successfully",
           data: userLogin,
