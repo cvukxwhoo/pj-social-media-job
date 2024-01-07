@@ -25,8 +25,9 @@ const Register = () => {
         text: "Go to Login",
         icon: "success",
         confirmButtonText: "OK",
+      }).then((res) => {
+        if (res.isConfirmed) navigate("/login");
       });
-      navigate("/login");
     } else {
       Swal.fire({
         title: registerpost.message,
@@ -118,7 +119,16 @@ const Register = () => {
       >
         <Input.Password />
       </Form.Item>
-      <Form.Item name="role" label="Accout">
+      <Form.Item
+        name="role"
+        label="Accout"
+        rules={[
+          {
+            required: true,
+            message: "Please input your role!",
+          },
+        ]}
+      >
         <Radio.Group onChange={handleRadioChange} value={selectedValue}>
           <Radio value="individual">individual</Radio>
           <Radio value="business">business</Radio>

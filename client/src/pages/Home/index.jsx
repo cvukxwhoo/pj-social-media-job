@@ -6,8 +6,8 @@ import {
 } from '@fortawesome/free-regular-svg-icons';
 import { faBriefcase, faLocationDot } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+// import React, { useState, useEffect } from 'react';
+// import axios from 'axios';
 
 const Home = () => {
   // const [data, setData] = useState([]);
@@ -33,7 +33,16 @@ const Home = () => {
   //   fetchData();
   // };
 
-  const [authorData, setAuthorData] = useState({});
+  // const [authorData, setAuthorData] = useState({});
+
+  // const fetchAuthorData = async (authorId) => {
+  //   try {
+  //     const response = await axios.get(`/api/authors/${authorId}`);
+  //     setAuthorData(response.data);
+  //   } catch (error) {
+  //     console.error('Error fetching author data:', error);
+  //   }
+  // };
 
   return (
     <div className='home-container'>
