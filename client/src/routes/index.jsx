@@ -10,7 +10,7 @@ const publicRoutes = [
   { path: "/", component: Home },
   { path: "/login", component: Login, layout: HeaderOnly },
   { path: "/register", component: Register, layout: HeaderOnly },
-  { path: "/personal-info", component: InfoUser },
+  { path: "/personal-info", component: InfoUser, layout: HeaderOnly },
   { path: "/employer/details", component: Employers, layout: HeaderOnly },
   { path: "/profile", component: Profile, layout: HeaderOnly },
 ];

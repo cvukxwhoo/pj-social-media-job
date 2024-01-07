@@ -9,6 +9,7 @@ import loginRouter from "./routes/login.js";
 import infoUserRouter from "./routes/infoUser.js";
 import employerRouter from "./routes/employer.js";
 import postRouter from "./routes/post.js";
+import checktoken from "./routes/checktoken.js";
 
 const app = express();
 const URI =
@@ -25,7 +26,7 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/infouser", infoUserRouter);
 app.use("/employer", employerRouter);
-
+app.use("/token", checktoken);
 app.listen(3001, () => {
   console.log("Server has been run on 3001!");
 });
