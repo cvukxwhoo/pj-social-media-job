@@ -215,16 +215,13 @@ const middlewares = {
   checkToken: (req, res, next) => {
     try {
       const authHeader = req.headers["authorization"];
-      // Kiểm tra xem header có tồn tại và có chứa thông tin token không
       if (!authHeader || !authHeader.startsWith("Bearer ")) {
         return res.status(401).json({
           error:
             "JWT must be provided in the Authorization header as Bearer Token.",
         });
       }
-      // Lấy token từ header
       const token = authHeader.split(" ")[1];
-
       const checkToken = verifyToken(token);
       req.user = checkToken;
       next();

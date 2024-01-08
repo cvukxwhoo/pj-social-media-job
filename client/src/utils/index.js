@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import { useAuth } from "../context/AuthContext";
 const fecthtoken = async () => {
+  const { login } = useAuth();
   const navigate = useNavigate;
   const token = localStorage.getItem("token");
   if (!token) {
@@ -13,7 +14,7 @@ const fecthtoken = async () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log(response.data);
+      login(response.data.data, response.data.token);
     } catch (error) {
       console.log(error);
       navigate("/login");

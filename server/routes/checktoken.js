@@ -1,5 +1,7 @@
 import express from "express";
-
+import { ObjectId } from "mongodb";
+import UserModel from "../Models/user.js";
+import { createAccessToken } from "../utils/index.js";
 // middleware
 import middlewares from "../middlewares/index.js";
 
@@ -9,10 +11,28 @@ const checktoken = express.Router();
 
 //routes
 checktoken.get("/", middlewares.checkToken, async (req, res) => {
-  res.status(200).json({
-    data: req.user,
-    token,
-  });
+  const _id = new ObjectId(req.user.id);
+  try {
+    const userLogin = await UserModel.findOne({ _id });
+    if (!userLogin) {
+      res.status(400).json({
+        message: "User or password not right",
+      });
+      return;
+    } else {
+      const token = createAccessToken(userLogin);
+      res.status(200).json({
+        message: "User logged in successfully",
+        data: userLogin,
+        token,
+      });
+      return;
+    }
+  } catch (error) {
+    res.status(500).json({
+      message: error.message,
+    });
+  }
   return;
 });
 
