@@ -1,59 +1,94 @@
 import React, { useState } from "react";
 import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
+import Swal from "sweetalert2";
 import "./styles.css";
 
 const Login = () => {
-  const { login } = useAuth();
-  const [showPassword, setShowPassword] = useState(false);
+  const [tb, setTb] = useState("");
+  const { login, islogin } = useAuth();
+  const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
       const loginpost = await axios.post("http://localhost:3001/login", values);
-      const { token, data } = loginpost.data;
-      login(data, token);
+      login_info(loginpost.data);
+      login(loginpost.data.data, loginpost.data.token);
     } catch (error) {
-      console.log(error.response.data.message);
+      login_info(error.response.data);
     }
   };
 
-  const handleShowPasswordToggle = () => {
-    setShowPassword(!showPassword);
+  const login_info = (loginpost) => {
+    if (loginpost.message === "User logged in successfully") {
+      setTb("");
+      Swal.fire({
+        title: "Login Success!",
+        text: "Go to home",
+        icon: "success",
+        confirmButtonText: "OK",
+      }).then(() => {
+        navigate("/").preventDefault();
+      });
+    } else {
+      setTb(loginpost.message);
+      Swal.fire({
+        title: loginpost.message,
+        text: "Continue Register",
+        icon: "error",
+      });
+    }
   };
 
-  const [buttonColor, setButtonColor] = useState('#f00');
+  const validatePasswordLength = (rule, value, callback) => {
+    if (value && value.length < 8) {
+      callback("Password must be at least 8 characters long!");
+    } else {
+      callback();
+    }
+  };
 
   const handleButtonHover = () => {
-    setButtonColor('#800');
+    setButtonColor("#800");
   };
 
   const handleButtonLeave = () => {
-    setButtonColor('#f00');
+    setButtonColor("#f00");
   };
+
+  const [buttonColor, setButtonColor] = useState("#f00");
 
   return (
     <div className="parent-container">
       <div className="first-container">
-        <div className="logo">
+      <div className="logo">
           <h1>
             Welcome to <span className="logo-text"><img className="logo-size" src="https://itviec.com/assets/logo_black_text-04776232a37ae9091cddb3df1973277252b12ad19a16715f4486e603ade3b6a4.png" alt="Logo" /></span>
           </h1>
         </div>
-        <div className="divider">
-          <hr />
-          <span>or</span>
-          <hr />
-        </div>
-        <Form className="email-form" onFinish={onFinish}>
+        <Form
+          name="normal_login"
+          className="email-form"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+        >
           <Form.Item
             name="email"
             rules={[
               {
                 required: true,
                 message: "Please input your Email!",
+              },
+              {
+                required: false,
+                message: {
+                  message: "User or password not right",
+                },
               },
             ]}
           >
@@ -70,36 +105,41 @@ const Login = () => {
                 required: true,
                 message: "Please input your Password!",
               },
+              { validator: validatePasswordLength },
             ]}
           >
             <Input.Password
               prefix={<LockOutlined className="site-form-item-icon" />}
+              type="password"
               placeholder="Password"
               iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
               visibilityToggle={false}
               autoComplete="off"
             />
           </Form.Item>
-          <div className="forgot-password">
-            <Link to="#">Forgot Password?</Link>
-          </div>
-          <Button
-            type="primary"
-            htmlType="submit"
-            className="email-btn"
-            style={{
-              backgroundColor: buttonColor,
-              borderColor: buttonColor,
-              transition: 'background-color 0.3s, border-color 0.3s',
-            }}
-            onMouseEnter={handleButtonHover}
-            onMouseLeave={handleButtonLeave}
-          >
-            Sign in with Email
-          </Button>
-          <div className="signup-link">
-            Do not have an account? <Link to="/register">Sign up now!</Link>
-          </div>
+          <Form.Item>
+            <div className="forgot-password">
+              <Link to="/">Forgot password</Link>
+            </div>
+          </Form.Item>
+          <Form.Item>
+            <div className="red">{tb}</div>
+            <Button
+              type="primary"
+              htmlType="submit"
+              className="email-btn"
+              style={{
+                backgroundColor: buttonColor,
+                borderColor: buttonColor,
+                transition: "background-color 0.3s, border-color 0.3s",
+              }}
+              onMouseEnter={handleButtonHover}
+              onMouseLeave={handleButtonLeave}
+            >
+              Log in
+            </Button>
+            Or <Link to="/register">register now!</Link>
+          </Form.Item>
         </Form>
       </div>
       <div className="second-container">

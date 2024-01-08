@@ -2,7 +2,12 @@ import React from "react";
 import axios from "axios";
 import "./styles.css";
 
-const { username = "Mặc định" } = {};
+const {
+  username = "Mặc định",
+  headline = "Backend Developer",
+  current = "Hanoi University of Science and Technology",
+  city = "Hanoi Capital Region",
+} = {};
 
 const Header = () => {
   return (
@@ -20,7 +25,16 @@ const Header = () => {
         />
       </div>
       <div className="info-intro">
-        <h2>{username}</h2>
+        <div className="intro-left">
+          <h2>{username}</h2>
+          <h3>{headline}</h3>
+          <div className="location">{city}</div>
+        </div>
+        <div className="Contact">ContactInfo</div>
+        <div className="intro-right">
+          <div>Current position:</div>
+          <div className="current">{current}</div>
+        </div>
       </div>
     </div>
   );

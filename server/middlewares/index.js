@@ -1,4 +1,5 @@
 import UserModel from "../Models/user.js";
+import { verifyToken } from "../utils/index.js";
 
 const middlewares = {
   register: async (req, res, next) => {
@@ -210,6 +211,24 @@ const middlewares = {
       return;
     }
     next();
+  },
+  checkToken: (req, res, next) => {
+    try {
+      const authHeader = req.headers["authorization"];
+      if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({
+          error:
+            "JWT must be provided in the Authorization header as Bearer Token.",
+        });
+      }
+      const token = authHeader.split(" ")[1];
+      const checkToken = verifyToken(token);
+      req.user = checkToken;
+      next();
+    } catch (error) {
+      res.status(401).json({ message: error.message });
+      return;
+    }
   },
 };
 export default middlewares;

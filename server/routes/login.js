@@ -1,17 +1,19 @@
-import express from "express";
+import express from 'express';
 
 // middleware
-import middlewares from "../middlewares/index.js";
+import middlewares from '../middlewares/index.js';
 
 // controller
-import loginController from "../controllers/loginController.js";
+import loginController from '../controllers/loginController.js';
 
 const loginRouter = express.Router();
 
 // Login routes
 
-loginRouter.post("/", middlewares.login, loginController.postLogin);
+loginRouter.post('/', middlewares.login, loginController.postLogin);
 
-loginRouter.get("/", loginController.getAllLogin);
+loginRouter.get('/', loginController.getAllLogin);
+
+loginRouter.get('/:id', loginController.getUserById);
 
 export default loginRouter;

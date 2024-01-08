@@ -1,0 +1,49 @@
+.profile-header {
+  padding: 32px 30px;
+  background: linear-gradient(269.85deg, #54151c 0%, #121212 54.89%);
+  color: rgba(255, 255, 255);
+  opacity: 1;
+
+  .profile-header-content {
+    max-width: 1340px;
+    width: 100%;
+    margin-right: auto;
+    margin-left: auto;
+
+    .profile-header-row {
+      display: flex;
+      flex-direction: row;
+
+      .profile-avatar {
+        width: 160px;
+        height: 160px;
+        background-color: #fff;
+        border: 1px solid #dedede;
+        border-radius: 4px;
+        margin-right: 24px;
+        display: flex;
+        align-items: center;
+
+        .profile-logo {
+          opacity: 1;
+          transition: opacity 200ms;
+          object-fit: contain;
+          max-width: 100% !important;
+          vertical-align: middle;
+        }
+      }
+    }
+  }
+
+  .proflie-header-details {
+    .profile-title {
+      padding-bottom: 8px;
+    }
+  }
+}
+
+.profile-header-follow {
+  margin-top: 24px;
+  background-color: #fff;
+  color: red;
+}

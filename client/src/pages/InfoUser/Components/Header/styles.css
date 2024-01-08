@@ -5,6 +5,11 @@
   height: 15rem;
   object-fit: cover;
 }
+.header-info {
+  border-radius: 0.8rem;
+  border: 0.5px solid rgb(234, 230, 230);
+  margin-bottom: 0.7rem;
+}
 .photo .avatar {
   border-radius: 50%;
   height: 10rem;
