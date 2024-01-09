@@ -103,3 +103,34 @@ header > .shrink {
     }
   }
 }
+a .icon{
+  color: gray;
+  font-size: 12px;
+  font-variant: small-caps;
+}
+a .icon:hover{
+  color: white;
+}
+.login-button .icon:hover .layoutmore{
+    background-color: red;
+  }
+
+
+.relative{
+  position: relative;
+}
+.layoutmore{
+  bottom: 0;
+  background-color: gray;
+  position: absolute;
+  display: block;
+  z-index: 1000;
+  width: 200px;
+  transform: translateY(100%) translateX(-70%);
+}
+.none{
+  display: none;
+}
+.layoutmore a:hover{
+  color: red;
+}

@@ -2,6 +2,7 @@ header {
   height: 60px;
   display: block;
   background-color: #000;
+  z-index: 1000;
 
   nav {
     background: linear-gradient(269.85deg, #54151c 0%, #121212 54.89%);
@@ -93,14 +94,43 @@ header > .shrink {
       font-size: 16px;
       text-decoration: none;
       color: #fff;
-      font-weight: 500;
+      font-weight: 300;
     }
 
     .fa-regular {
       margin-left: 10px;
       transform: translateY(10%);
-      font-size: 20px;
-      color: rgb(232, 230, 227);
     }
   }
+}
+a .icon{
+  color: gray;
+  font-size: 12px;
+  font-variant: small-caps;
+}
+a .icon:hover{
+  color: white;
+}
+.login-button .icon:hover .layoutmore{
+    background-color: red;
+  }
+
+
+.relative{
+  position: relative;
+}
+.layoutmore{
+  bottom: 0;
+  background-color: gray;
+  position: absolute;
+  display: block;
+  z-index: 1000;
+  width: 200px;
+  transform: translateY(100%) translateX(-70%);
+}
+.none{
+  display: none;
+}
+.layoutmore a:hover{
+  color: red;
 }

@@ -21,12 +21,13 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // Routes
-app.use("/", postRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/infouser", infoUserRouter);
 app.use("/employer", employerRouter);
 app.use("/token", checktoken);
+app.use("/", postRouter);
+
 app.listen(3001, () => {
   console.log("Server has been run on 3001!");
 });

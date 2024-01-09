@@ -11,9 +11,9 @@ const checktoken = express.Router();
 
 //routes
 checktoken.get("/", middlewares.checkToken, async (req, res) => {
-  const _id = new ObjectId(req.user.id);
   try {
-    const userLogin = await UserModel.findOne({ _id });
+    const _id = new ObjectId(req.user.id);
+    const userLogin = await UserModel.findOne({ _id: req.user.id });
     if (!userLogin) {
       res.status(400).json({
         message: "User or password not right",
@@ -30,7 +30,7 @@ checktoken.get("/", middlewares.checkToken, async (req, res) => {
     }
   } catch (error) {
     res.status(500).json({
-      message: error.message,
+      message: "error.message",
     });
   }
   return;
