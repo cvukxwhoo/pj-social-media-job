@@ -48,6 +48,7 @@ const infoUserController = {
   },
   getOptionUser: async (req, res) => {
     try {
+      req.id = { idUser: req.body.id };
       const NewGetOption = await OptionModel.findOne(req.id);
       if (NewGetOption)
         res.status(200).json({
@@ -58,6 +59,31 @@ const infoUserController = {
         res.status(404).json({
           message: "Not found !",
           data: NewGetOption,
+        });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  },
+  putOptionUser: async (req, res) => {
+    try {
+      const update = { $set: req.body };
+      req.id = { idUser: req.body.id };
+      const NewUpdateOption = await OptionModel.findOneAndUpdate(
+        req.id,
+        update,
+        { new: true }
+      );
+      if (NewUpdateOption)
+        res.status(201).json({
+          message: "Update Succes !",
+          data: NewUpdateOption,
+        });
+      else
+        res.status(404).json({
+          message: "Not found !",
+          data: NewUpdateOption,
         });
     } catch (error) {
       res.status(500).json({

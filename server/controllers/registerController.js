@@ -16,7 +16,7 @@ const registerController = {
       });
       console.log(createNewDetailUser._id);
       const createNewOption = await OptionModel.create({
-        IdOption: createNewDetailUser._id,
+        idUser: createNewUser._id,
       });
       //
 

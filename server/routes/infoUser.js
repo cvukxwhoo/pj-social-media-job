@@ -13,10 +13,7 @@ const infoUserRouter = express.Router();
 infoUserRouter.put("/", middlewares.infoUser, infoUserController.putInfoUser);
 
 infoUserRouter.post("/", middlewares.infoUser, infoUserController.getInfoUser);
-infoUserRouter.get(
-  "/option",
-  middlewares.infoUser,
-  infoUserController.getOptionUser
-);
+infoUserRouter.post("/option", infoUserController.getOptionUser);
+infoUserRouter.put("/option", infoUserController.putOptionUser);
 
 export default infoUserRouter;

@@ -1,21 +1,52 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Options from "./Components/options";
 import ContentItem from "./Components/ContentItem";
+import axios from "axios";
 
-const data = [
-  { name: "Education", check: false },
-  { name: "Project", check: false },
-  { name: "Skills", check: false },
-  { name: "Courses", check: false },
-  { name: "Experience", check: false },
-];
+const Content = ({ isAuth, user }) => {
+  const [data, setData] = useState([
+    { name: "Education", check: false },
+    { name: "Project", check: false },
+    { name: "Skills", check: false },
+    { name: "Courses", check: false },
+    { name: "Experience", check: false },
+  ]);
+  const myArray = [];
+  const HandleRes = (obj) => {
+    let tmp = obj;
+    delete tmp._id;
+    delete tmp.idUser;
+    delete tmp.__v;
+    Object.keys(tmp).forEach((key) =>
+      myArray.push({ name: key, check: tmp[key] })
+    );
+    setData(myArray);
+  };
 
-const Content = () => {
+  useEffect(() => {
+    const fetchOptions = async () => {
+      try {
+        const response = await axios.post(
+          "http://localhost:3001/infouser/option",
+          {
+            id: user._id,
+          }
+        );
+        HandleRes(response.data.data);
+      } catch (error) {
+        console.log(error.message);
+      }
+    };
+    fetchOptions();
+  }, [user]);
+
   return (
     <div>
-      <Options />
+      {isAuth && (
+        <Options data={data} id={user && user._id} setHdata={HandleRes} />
+      )}
       {data.map((e, i) => {
-        return <ContentItem data={e} key={i} />;
+        if (e.check) return <ContentItem data={e} key={i} />;
       })}
     </div>
   );

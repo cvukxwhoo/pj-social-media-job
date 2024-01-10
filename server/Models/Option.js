@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb";
 import mongoose from "mongoose";
 
 const OptionSchema = mongoose.Schema({
-  IdOption: ObjectId,
+  idUser: ObjectId,
   Education: {
     type: Boolean,
     default: false,

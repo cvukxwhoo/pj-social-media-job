@@ -11,11 +11,16 @@ const Header = () => {
   const [isAuth, setisAuth] = useState(false);
   const [userinfo, setUserinfo] = useState({});
   const { id } = useParams();
-  const getid = decoded(id);
+  const idtmp = decoded(id);
+  const [getid, setgetid] = useState(idtmp);
+  useEffect(() => {
+    const tmp = decoded(id);
+    setgetid(tmp);
+  }, [...id]);
 
   useEffect(() => {
     if (user && user._id == getid) setisAuth(true);
-  }, [user]);
+  }, [...id, { ...user }]);
   useEffect(() => {
     const value = {
       id: getid,
@@ -32,7 +37,11 @@ const Header = () => {
       }
     };
     getdata();
-  }, []);
+  }, [id]);
+  useEffect(() => {
+    let tmp = userinfo;
+    setUserinfo(tmp);
+  }, [id]);
   return (
     <div className="header-info">
       <div className="photo">
