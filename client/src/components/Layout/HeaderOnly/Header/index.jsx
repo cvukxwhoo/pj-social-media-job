@@ -7,11 +7,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { encoded } from "../../../../utils/index.js";
-
+import axios from "axios";
 const Header = () => {
-  const { user, islogin, logout } = useAuth();
+  const { login, user, islogin, logout } = useAuth();
+
   let link;
   if (islogin) {
     link = "/personalinfo/" + encoded(user._id.toString());

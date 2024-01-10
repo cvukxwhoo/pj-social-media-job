@@ -4,8 +4,8 @@ import mongoose from "mongoose";
 const DetailUserSchema = mongoose.Schema({
   idUser: ObjectId,
   userName: String,
+  birthday: String,
   email: String,
-  password: String,
   Name: String,
   headline: String,
   current: String,
@@ -17,7 +17,7 @@ DetailUserSchema.pre("save", function (next) {
   const model = this;
   model.schema.eachPath((path) => {
     if (!model[path]) {
-      model[path] = null;
+      model[path] = "Default";
     }
   });
   next();

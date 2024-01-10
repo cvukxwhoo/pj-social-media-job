@@ -1,5 +1,10 @@
 import React, { useState } from "react";
-import { EyeInvisibleOutlined, EyeTwoTone, LockOutlined, UserOutlined } from "@ant-design/icons";
+import {
+  EyeInvisibleOutlined,
+  EyeTwoTone,
+  LockOutlined,
+  UserOutlined,
+} from "@ant-design/icons";
 import { Button, Checkbox, Form, Input } from "antd";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -11,10 +16,14 @@ const Login = () => {
   const [tb, setTb] = useState("");
   const { login, islogin } = useAuth();
   const navigate = useNavigate();
-
+  let first = false;
   const onFinish = async (values) => {
     try {
       const loginpost = await axios.post("http://localhost:3001/login", values);
+      const checkfirst = await axios.post("http://localhost:3001/infouser", {
+        id: loginpost.data.data._id,
+      });
+      if (checkfirst.data.data.Name == "Default") first = true;
       login_info(loginpost.data);
       login(loginpost.data.data, loginpost.data.token);
     } catch (error) {
@@ -31,7 +40,8 @@ const Login = () => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        navigate("/").preventDefault();
+        if (first) navigate("/first").preventDefault();
+        else navigate("/").preventDefault();
       });
     } else {
       setTb(loginpost.message);
@@ -64,9 +74,16 @@ const Login = () => {
   return (
     <div className="parent-container">
       <div className="first-container">
-      <div className="logo">
+        <div className="logo">
           <h1>
-            Welcome to <span className="logo-text"><img className="logo-size" src="https://itviec.com/assets/logo_black_text-04776232a37ae9091cddb3df1973277252b12ad19a16715f4486e603ade3b6a4.png" alt="Logo" /></span>
+            Welcome to{" "}
+            <span className="logo-text">
+              <img
+                className="logo-size"
+                src="https://itviec.com/assets/logo_black_text-04776232a37ae9091cddb3df1973277252b12ad19a16715f4486e603ade3b6a4.png"
+                alt="Logo"
+              />
+            </span>
           </h1>
         </div>
         <Form
@@ -112,7 +129,9 @@ const Login = () => {
               prefix={<LockOutlined className="site-form-item-icon" />}
               type="password"
               placeholder="Password"
-              iconRender={(visible) => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+              iconRender={(visible) =>
+                visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />
+              }
               visibilityToggle={false}
               autoComplete="off"
             />
@@ -143,10 +162,15 @@ const Login = () => {
         </Form>
       </div>
       <div className="second-container">
-        <h2>Sign in to get instant access to thousands of reviews and salary information</h2>
+        <h2>
+          Sign in to get instant access to thousands of reviews and salary
+          information
+        </h2>
         <ul className="bullet-points">
           <li>View salary to help you negotiate your offer or pay rise</li>
-          <li>Find out about benefits, interview, company culture via reviews</li>
+          <li>
+            Find out about benefits, interview, company culture via reviews
+          </li>
           <li>Easy apply with only 1 click</li>
           <li>Manage your own profile & privacy</li>
         </ul>

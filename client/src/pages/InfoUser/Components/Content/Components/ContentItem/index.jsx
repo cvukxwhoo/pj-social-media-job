@@ -12,9 +12,9 @@ const ContentItem = ({ data }) => {
   ];
   return (
     <div className="contentItem">
-      {itemdata.map((e) => {
+      {itemdata.map((e, i) => {
         return (
-          <div className="smallItem">
+          <div className="smallItem" key={i}>
             <h2>{data.name}</h2>
             <div className="small title">
               <div className="title">{e.title}</div>

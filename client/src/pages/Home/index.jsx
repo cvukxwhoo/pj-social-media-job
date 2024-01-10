@@ -7,11 +7,31 @@ import {
 import { faBriefcase, faLocationDot } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
+import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
-import { fecthtoken } from "../../utils/index.js";
+import { useNavigate } from "react-router-dom";
 const Home = () => {
-  const { islogin } = useAuth();
+  const { islogin, login, user } = useAuth();
+  const fecthtoken = async () => {
+    const navigate = useNavigate();
+    const token = localStorage.getItem("token");
+    if (!token) {
+      navigate("/login");
+    } else {
+      try {
+        const response = await axios.get("http://localhost:3001/token", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        await login(response.data.data, response.data.token);
+        console.log(user);
+      } catch (error) {
+        console.log(error);
+        navigate("/login");
+      }
+    }
+  };
   if (!islogin) fecthtoken();
   // const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(false);

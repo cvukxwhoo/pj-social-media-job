@@ -1,3 +1,4 @@
+import { ObjectId } from "mongodb";
 import UserModel from "../Models/user.js";
 import { verifyToken } from "../utils/index.js";
 
@@ -156,9 +157,16 @@ const middlewares = {
   },
 
   infoUser: async (req, res, next) => {
-    // tim objectId ! cập nhật sau :)
-    const user = await UserModel.findOne({ email: req.body.email });
-    req.id = { idUser: user._id };
+    try {
+      const { id } = req.body;
+      const newid = new ObjectId(id);
+      const user = await UserModel.findOne({ _id: newid });
+      req.id = { idUser: user._id };
+    } catch (error) {
+      res.status(401).json({ message: error.message });
+      return;
+    }
+
     //
     next();
   },

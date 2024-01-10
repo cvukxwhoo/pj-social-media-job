@@ -4,8 +4,8 @@ const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
-  const [islogin, setislogin] = useState(null);
-  const login = (userData, token) => {
+  const [islogin, setislogin] = useState(false);
+  const login = async (userData, token, bool) => {
     setUser(userData);
     setislogin(true);
     localStorage.setItem("token", token);
