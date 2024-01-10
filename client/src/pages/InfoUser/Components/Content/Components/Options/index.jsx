@@ -23,16 +23,18 @@ const Options = () => {
     <div className="options">
       <div>Add profile section</div>
       <form onSubmit={onFinish}>
-        {OptionsMap.map((e, i) => {
-          return (
-            <Option_Item
-              nameOptions={e.name}
-              check={e.check}
-              key={i}
-              onFinish={getData}
-            />
-          );
-        })}
+        <div>
+          {OptionsMap.map((e, i) => {
+            return (
+              <Option_Item
+                nameOptions={e.name}
+                check={e.check}
+                key={i}
+                onFinish={getData}
+              />
+            );
+          })}
+        </div>
         <button type="submit">OK</button>
       </form>
     </div>

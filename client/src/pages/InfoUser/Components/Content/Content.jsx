@@ -3,19 +3,18 @@ import Options from "./Components/options";
 import ContentItem from "./Components/ContentItem";
 
 const data = [
-  {
-    title: "Education",
-  },
-  {
-    title: "Project",
-  },
+  { name: "Education", check: false },
+  { name: "Project", check: false },
+  { name: "Skills", check: false },
+  { name: "Courses", check: false },
+  { name: "Experience", check: false },
 ];
 
 const Content = () => {
   return (
     <div>
       <Options />
-      {data.forEach((e, i) => {
+      {data.map((e, i) => {
         return <ContentItem data={e} key={i} />;
       })}
     </div>

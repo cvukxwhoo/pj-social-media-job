@@ -1,4 +1,5 @@
 import DetailUserModel from "../Models/DetailUser.js";
+import OptionModel from "../Models/Option.js";
 import UserModel from "../Models/user.js";
 
 const registerController = {
@@ -13,9 +14,12 @@ const registerController = {
         idUser: createNewUser._id,
         ...req.body,
       });
+      console.log(createNewDetailUser._id);
+      const createNewOption = await OptionModel.create({
+        IdOption: createNewDetailUser._id,
+      });
       //
-      {
-      }
+
       res.status(201).json({
         message: "User created successfully",
         data: createNewUser,

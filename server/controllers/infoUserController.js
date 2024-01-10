@@ -1,4 +1,5 @@
 import DetailUserModel from "../Models/DetailUser.js";
+import OptionModel from "../Models/Option.js";
 
 const infoUserController = {
   //Update dữ liệu
@@ -38,6 +39,25 @@ const infoUserController = {
         res.status(404).json({
           message: "Not found !",
           data: NewGetInfo,
+        });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+      });
+    }
+  },
+  getOptionUser: async (req, res) => {
+    try {
+      const NewGetOption = await OptionModel.findOne(req.id);
+      if (NewGetOption)
+        res.status(200).json({
+          message: "Get Succes !",
+          data: NewGetOption,
+        });
+      else
+        res.status(404).json({
+          message: "Not found !",
+          data: NewGetOption,
         });
     } catch (error) {
       res.status(500).json({

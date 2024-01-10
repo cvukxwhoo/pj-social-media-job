@@ -8,10 +8,16 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../../../context/AuthContext";
 import { useState } from "react";
+import { encoded } from "../../../../utils/index.js";
+
 const Header = () => {
-  const [loginhover, setloginhover] = useState(false);
-  const nagivate = useNavigate();
   const { user, islogin, logout } = useAuth();
+  let link;
+  if (islogin) {
+    link = "/personalinfo/" + encoded(user._id.toString());
+  }
+  const [loginhover, setloginhover] = useState(false);
+  const navigate = useNavigate();
   const signout = () => {
     logout();
     navigate("/login");
@@ -65,7 +71,7 @@ const Header = () => {
                   setloginhover(false);
                 }}
               >
-                <Link to="/personal-info" className="relative">
+                <Link to={link} className="relative">
                   {splitname(user.userName)}
                   <span> </span>
                   <FontAwesomeIcon icon={faAngleDown} className="icon" />

@@ -1,15 +1,17 @@
 import React from "react";
 import axios from "axios";
 import "./styles.css";
-
+import { useParams } from "react-router-dom";
 const {
-  username = "Mặc định",
+  Name = "Mặc định",
   headline = "Backend Developer",
   current = "Hanoi University of Science and Technology",
   city = "Hanoi Capital Region",
 } = {};
 
 const Header = () => {
+  const { id } = useParams();
+  console.log(id);
   return (
     <div className="header-info">
       <div className="photo">
@@ -26,7 +28,7 @@ const Header = () => {
       </div>
       <div className="info-intro">
         <div className="intro-left">
-          <h2>{username}</h2>
+          <h2>{Name}</h2>
           <h3>{headline}</h3>
           <div className="location">{city}</div>
         </div>

@@ -7,10 +7,11 @@ const DetailUserSchema = mongoose.Schema({
   email: String,
   password: String,
   Name: String,
-  Phone: String,
-  MXH: [Object],
-  CV: String,
-  LikedJob: [ObjectId],
+  headline: String,
+  current: String,
+  city: String,
+  avatar: String,
+  background: String,
 });
 DetailUserSchema.pre("save", function (next) {
   const model = this;

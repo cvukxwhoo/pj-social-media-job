@@ -2,6 +2,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
+import { Buffer } from "buffer";
 const fecthtoken = async () => {
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -24,4 +25,14 @@ const fecthtoken = async () => {
     }
   }
 };
-export { fecthtoken };
+
+// Hàm mã hóa
+const encoded = (e) => {
+  return Buffer.from(e).toString("base64");
+};
+// Giải mã
+const decoded = (e) => {
+  return Buffer.from(e, "base64").toString("utf-8");
+};
+
+export { fecthtoken, encoded, decoded };
