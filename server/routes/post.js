@@ -15,4 +15,6 @@ postRouter.get("/", PostController.getPost);
 
 postRouter.get("/:id", PostController.getPostById);
 
+postRouter.put("/:id", PostController.putPostById);
+
 export default postRouter;

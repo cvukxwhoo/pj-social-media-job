@@ -1,10 +1,10 @@
-import Header from './Header';
-import Sidebar from './Sidebar';
-import './styles.scss';
-import FormPost from './Sidebar/components/FormPost';
-import { useState } from 'react';
+import Header from "./Header";
+import Sidebar from "./Sidebar";
+import "./styles.scss";
+import FormPost from "./Sidebar/components/FormPost";
+import { useState } from "react";
 
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
 
 const DefaultLayout = ({ children }) => {
   const [showForm, setShowForm] = useState(false);
@@ -21,22 +21,21 @@ const DefaultLayout = ({ children }) => {
   return (
     <main>
       <FormPost
-        className='form-post'
+        className="form-post"
         clickHiddenForm={clickHiddenForm}
         showForm={showForm}
       />
-      <div className={showForm ? 'blurred' : 'main'}>
+      <div className={showForm ? "blurred" : "main"}>
         <Header />
-        <div className='post-input'>
+        <div className="post-input">
           <input
             onClick={handleInputForm}
-            className='clickShowPopup'
-            placeholder='What do you want to post?'
+            className="clickShowPopup"
+            placeholder="What do you want to post?"
           />
         </div>
-        <div className='main-container'>
-          <Sidebar className='sidebar' />
-          <div className='main-content'>{children}</div>
+        <div className="main-container">
+          <Sidebar className="sidebar" />
         </div>
       </div>
     </main>

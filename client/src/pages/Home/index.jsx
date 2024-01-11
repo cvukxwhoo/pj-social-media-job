@@ -78,7 +78,7 @@ const Home = () => {
       {/* HEADER */}
       <div className="home-header">
         <div className="main-title">
-          <h2>Senior/Middle Java Developer</h2>
+          <h2></h2>
           <p className="home-des-com">company name</p>
         </div>
         <div className="home-row-favou">

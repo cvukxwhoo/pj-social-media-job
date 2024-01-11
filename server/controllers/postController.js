@@ -60,6 +60,31 @@ const PostController = {
       });
     }
   },
+
+  putPostById: async (req, res) => {
+    try {
+      const update = { $set: req.body };
+      const putPostById = await PostModel.findOneAndUpdate(req._id, update, {
+        new: true,
+      });
+      if (putPostById)
+        res.status(201).json({
+          message: "Update Succes !",
+          data: putPostById,
+          isSuccess: true,
+        });
+      else
+        res.status(404).json({
+          message: "Not found !",
+        });
+    } catch (error) {
+      res.status(500).json({
+        message: error.message,
+        data: null,
+        isSuccess: false,
+      });
+    }
+  },
 };
 
 export default PostController;

@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import { format } from 'date-fns';
+import mongoose from "mongoose";
+import { format } from "date-fns";
 
 const PostSchema = mongoose.Schema({
   title: String,
@@ -10,10 +10,13 @@ const PostSchema = mongoose.Schema({
   vacancies: String,
   createdAt: {
     type: String,
-    default: format(new Date(), 'MMM dd, yyyy'),
+    default: format(new Date(), "MMM dd, yyyy"),
   },
+  jobDescription: String,
+  Exp: String,
+  whyLoveWorkHere: String,
 });
 
-const PostModel = mongoose.model('posts', PostSchema);
+const PostModel = mongoose.model("posts", PostSchema);
 
 export default PostModel;
