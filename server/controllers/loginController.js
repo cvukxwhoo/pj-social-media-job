@@ -1,6 +1,6 @@
-import UserModel from '../Models/user.js';
-import jwt from 'jsonwebtoken';
-import { createAccessToken } from '../utils/index.js';
+import UserModel from "../Models/user.js";
+import jwt from "jsonwebtoken";
+import { createAccessToken } from "../utils/index.js";
 
 const loginController = {
   // Duyệt POST Login
@@ -9,20 +9,20 @@ const loginController = {
       const { email, password } = req.body;
       if (!email || !password) {
         res.status(400).json({
-          message: 'Please provide a username and password',
+          message: "Please provide a username and password",
         });
         return;
       }
       const userLogin = await UserModel.findOne({ email, password });
       if (!userLogin) {
         res.status(400).json({
-          message: 'User or password not right',
+          message: "User or password not right",
         });
         return;
       } else {
         const token = createAccessToken(userLogin);
         res.status(200).json({
-          message: 'User logged in successfully',
+          message: "User logged in successfully",
           data: userLogin,
           token,
         });
@@ -37,10 +37,9 @@ const loginController = {
   // GET ALL Login
   getAllLogin: async (req, res) => {
     try {
-      const getUserLogin = req.body;
-      const AllUserLoginSuccess = await UserModel.find(getUserLogin);
+      const AllUserLoginSuccess = await UserModel.find();
       res.status(200).json({
-        message: 'Users retrieved successfully',
+        message: "Users retrieved successfully",
         data: AllUserLoginSuccess,
       });
     } catch (error) {
@@ -62,11 +61,11 @@ const loginController = {
         userName
       );
       res.status(200).json({
-        message: 'Users take id successfully',
+        message: "Users take id successfully",
         data: author,
       });
     } catch (error) {
-      res.status(500).json({ error: 'Error fetching author data' });
+      res.status(500).json({ error: "Error fetching author data" });
     }
   },
 };

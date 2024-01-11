@@ -55,7 +55,7 @@ const InfoUser = () => {
         <Content isAuth={isAuth} user={userN} />
       </div>
       <div className="infoUserRight">
-        <LayoutAside />
+        <LayoutAside id={getid} />
       </div>
     </div>
   );

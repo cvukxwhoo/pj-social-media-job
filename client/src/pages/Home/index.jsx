@@ -13,14 +13,11 @@ import { useNavigate } from "react-router-dom";
 import { useEffect } from "react";
 const Home = () => {
   const { islogin, login, user } = useAuth();
+  const navigate = useNavigate();
   const fecthtoken = async () => {
-    const navigate = useNavigate();
-
     const token = localStorage.getItem("token");
     if (!token) {
-      useEffect(() => {
-        navigate("/login");
-      }, []);
+      navigate("/login");
     } else {
       try {
         const response = await axios.get("http://localhost:3001/token", {
@@ -32,9 +29,7 @@ const Home = () => {
         console.log(user);
       } catch (error) {
         console.log(error);
-        useEffect(() => {
-          navigate("/login");
-        }, []);
+        navigate("/login");
       }
     }
   };
