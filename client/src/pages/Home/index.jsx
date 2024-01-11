@@ -14,26 +14,30 @@ import { useEffect } from "react";
 const Home = () => {
   const { islogin, login, user } = useAuth();
   const navigate = useNavigate();
-  const fecthtoken = async () => {
-    const token = localStorage.getItem("token");
-    if (!token) {
-      navigate("/login");
-    } else {
-      try {
-        const response = await axios.get("http://localhost:3001/token", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        await login(response.data.data, response.data.token);
-        console.log(user);
-      } catch (error) {
-        console.log(error);
+  useEffect(() => {
+    const fecthtoken = async () => {
+      const token = localStorage.getItem("token");
+      console.log(token);
+      if (!token) {
         navigate("/login");
+      } else {
+        try {
+          const response = await axios.get("http://localhost:3001/token", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          await login(response.data.data, response.data.token);
+          console.log(user);
+        } catch (error) {
+          console.log(error);
+          navigate("/login");
+        }
       }
-    }
-  };
-  if (!islogin) fecthtoken();
+    };
+    if (!islogin) fecthtoken();
+  }, []);
+
   // const [data, setData] = useState([]);
   // const [loading, setLoading] = useState(false);
 

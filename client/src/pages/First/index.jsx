@@ -14,9 +14,14 @@ const First = () => {
     city: "",
     birthday: "",
     id: user._id,
+    background:
+      "https://cdn.sforum.vn/sforum/wp-content/uploads/2023/06/tai-hinh-nen-dep-nhat-the-gioi-57.jpg",
+    avatar:
+      "https://cdn.sforum.vn/sforum/wp-content/uploads/2023/10/avatar-trang-4.jpg",
   });
   const getdata = async () => {
     try {
+      console.log(formData);
       const response = await axios.put(
         "http://localhost:3001/infouser",
         formData

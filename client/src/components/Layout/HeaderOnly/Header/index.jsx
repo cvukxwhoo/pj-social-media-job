@@ -12,13 +12,34 @@ import { encoded } from "../../../../utils/index.js";
 import axios from "axios";
 const Header = () => {
   const { login, user, islogin, logout } = useAuth();
-
+  const navigate = useNavigate();
+  useEffect(() => {
+    const fecthtoken = async () => {
+      const token = localStorage.getItem("token");
+      if (!token) {
+        navigate("/login");
+      } else {
+        try {
+          const response = await axios.get("http://localhost:3001/token", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          await login(response.data.data, response.data.token);
+          console.log(user);
+        } catch (error) {
+          console.log(error);
+          navigate("/login");
+        }
+      }
+    };
+    if (!islogin) fecthtoken();
+  }, []);
   let link;
   if (islogin) {
     link = "/personalinfo/" + encoded(user._id.toString());
   }
   const [loginhover, setloginhover] = useState(false);
-  const navigate = useNavigate();
   const signout = () => {
     logout();
     navigate("/login");

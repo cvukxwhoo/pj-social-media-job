@@ -15,3 +15,25 @@
 .green {
   color: greenyellow;
 }
+.title {
+  font-size: 21px;
+  margin-bottom: 5px;
+}
+.info {
+  margin-left: 1rem;
+  font-size: 14px;
+  font-style: italic;
+}
+.time {
+  font-size: 16px;
+  position: absolute;
+  top: 60px;
+  right: 80px;
+}
+.description {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+.editicon {
+  background-color: white;
+}

@@ -72,3 +72,44 @@
   right: 1rem;
   cursor: pointer;
 }
+.form1 {
+  z-index: 100;
+  background-color: white;
+  width: 50%;
+  border-radius: 0.7rem;
+  padding: 0.9rem;
+  gap: 10px;
+}
+.form1 h2 {
+  margin-bottom: 10px;
+}
+.form1 form {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.form1 form input {
+  border: 1px solid black;
+  border-radius: 0.2rem;
+  margin-left: 2px;
+}
+.form1 form label {
+  display: inline-block;
+  width: 9rem;
+}
+.red {
+  color: red;
+}
+.upload {
+  display: block;
+  width: 90%;
+  margin: 0 auto;
+  transform: translateY(-40%);
+  border: 1px solid gray;
+  border-radius: 0.2rem;
+  padding: 0.2rem;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+}
