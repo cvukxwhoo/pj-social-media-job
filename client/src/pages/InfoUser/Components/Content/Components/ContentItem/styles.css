@@ -1,6 +1,17 @@
 .contentItem {
+  position: relative;
   border-radius: 0.8rem;
   border: 0.5px solid rgb(234, 230, 230);
   margin-bottom: 0.7rem;
   padding: 0.7rem;
+}
+.editicon {
+  position: absolute;
+  z-index: 100;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.green {
+  color: greenyellow;
 }

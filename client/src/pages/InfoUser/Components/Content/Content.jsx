@@ -42,11 +42,10 @@ const Content = ({ isAuth, user }) => {
 
   return (
     <div>
-      {isAuth && (
-        <Options data={data} id={user && user._id} setHdata={HandleRes} />
-      )}
+      {isAuth && <Options data={data} id={user._id} setHdata={HandleRes} />}
       {data.map((e, i) => {
-        if (e.check) return <ContentItem data={e} key={i} />;
+        if (e.check)
+          return <ContentItem id={user._id} data={e} key={i} isAuth={isAuth} />;
       })}
     </div>
   );

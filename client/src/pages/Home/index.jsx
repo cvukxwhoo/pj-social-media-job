@@ -10,13 +10,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from "axios";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 const Home = () => {
   const { islogin, login, user } = useAuth();
   const fecthtoken = async () => {
     const navigate = useNavigate();
+
     const token = localStorage.getItem("token");
     if (!token) {
-      navigate("/login");
+      useEffect(() => {
+        navigate("/login");
+      }, []);
     } else {
       try {
         const response = await axios.get("http://localhost:3001/token", {
@@ -28,7 +32,9 @@ const Home = () => {
         console.log(user);
       } catch (error) {
         console.log(error);
-        navigate("/login");
+        useEffect(() => {
+          navigate("/login");
+        }, []);
       }
     }
   };

@@ -27,7 +27,9 @@ const InfoUser = () => {
     const fecthtoken = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        navigate("/login");
+        useEffect(() => {
+          navigate("/login");
+        }, []);
       } else {
         try {
           const response = await axios.get("http://localhost:3001/token", {
@@ -38,7 +40,9 @@ const InfoUser = () => {
           login(response.data.data, response.data.token);
         } catch (error) {
           console.log(error);
-          navigate("/login");
+          useEffect(() => {
+            navigate("/login");
+          }, []);
         }
       }
     };

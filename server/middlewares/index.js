@@ -170,7 +170,6 @@ const middlewares = {
     //
     next();
   },
-
   createPost: async (req, res, next) => {
     const {
       title,
