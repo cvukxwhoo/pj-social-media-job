@@ -8,8 +8,10 @@ import {
 import { useState, useEffect } from "react";
 import { Spin } from "antd"; //Loading..
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
+  const navigate = useNavigate();
   const [listPost, setListPost] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,6 +30,10 @@ const Sidebar = () => {
     getPosts();
   }, []);
 
+  const handlePostClick = (id) => {
+    navigate(`posts/${id}`);
+  };
+
   return (
     <>
       <div className="sidebar-container">
@@ -37,7 +43,7 @@ const Sidebar = () => {
           listPost.map((post) => {
             return (
               <div
-                onClick="handleShowDetailsPost"
+                onClick={() => handlePostClick(post._id)}
                 key={post._id}
                 className="post-items"
               >

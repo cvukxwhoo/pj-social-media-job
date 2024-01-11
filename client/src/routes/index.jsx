@@ -15,7 +15,7 @@ const publicRoutes = [
   { path: "/register", component: Register, layout: HeaderOnly },
   { path: "/personalinfo/:id", component: InfoUser, layout: HeaderOnly },
   { path: "/employer/details", component: Employers, layout: HeaderOnly },
-  { path: "/profile", component: Profile, layout: HeaderOnly },
+  { path: "/posts/:id", component: Profile, layout: HeaderOnly },
 ];
 
 export { publicRoutes };

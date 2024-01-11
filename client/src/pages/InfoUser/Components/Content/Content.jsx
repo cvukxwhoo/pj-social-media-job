@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Options from "./Components/options";
+import Options from "./Components/Options/index";
 import ContentItem from "./Components/ContentItem";
 import axios from "axios";
 
